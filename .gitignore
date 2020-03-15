@@ -1,0 +1,6 @@
+.vscode/
+migrations/
+.mypy_cache/
+data.db
+__pycache__
+.env
