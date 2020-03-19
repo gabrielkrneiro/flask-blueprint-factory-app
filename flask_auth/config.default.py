@@ -7,12 +7,15 @@ class Config(object):
 
 
 class ProductionConfig(Config):
-    ENV = 'production'
+    # dont remove ENV attribute
+    ENV = __qualname__
 
 
 class DevelopmentConfig(Config):
-    ENV = 'development'
+    # dont remove ENV attribute
+    ENV = __qualname__
 
 
 class TestingConfig(Config):
-    ENV = 'test'
+    # dont remove ENV attribute
+    ENV = __qualname__

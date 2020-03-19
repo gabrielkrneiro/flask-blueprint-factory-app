@@ -4,3 +4,4 @@ migrations/
 data.db
 __pycache__
 .env
+.idea/

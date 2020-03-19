@@ -10,20 +10,25 @@ class Config(object):
     API_VERSION = 'v1'
 
 
-class ProductionConfig(Config):
+class Production(Config):
+    HOST = '0.0.0.0'
     DATABASE_URI = 'mysql://user@localhost/foo'
     PORT = '5010'
     SECRET_KEY = 'secret_key_prod'
+    ENV = __qualname__
 
 
-class DevelopmentConfig(Config):
+class Development(Config):
+    HOST = 'localhost'
     DEBUG = True
     PORT = '5000'
-    ENV = 'development'
     SECRET_KEY = 'secret_key_dev'
+    ENV = __qualname__
 
 
-class TestingConfig(Config):
+class Test(Config):
+    HOST = '0.0.0.0'
     TESTING = True
     PORT = '3214'
     SECRET_KEY = 'secret_key_test'
+    ENV = __qualname__

@@ -1,63 +1,25 @@
-import sqlite3
 import os
 
-from flask import Flask, jsonify
-from flask_marshmallow import Marshmallow
-from flask_restful import Api, abort, Resource
-from flask_migrate import Migrate
-from flask_sqlalchemy import SQLAlchemy
+from flask import Flask
 
-from dotenv import load_dotenv
-from flask_auth.config import DevelopmentConfig, ProductionConfig, TestingConfig
+import flask_auth.extensions.restful.rest_framework as rest_framework
+import flask_auth.extensions.database.database_framework as database_framework
+import flask_auth.extensions.migrate.migrate_framework as migrate_framework
+import flask_auth.extensions.serializer.serializer_framework as serializer_framework
 
-load_dotenv()
+import flask_auth.blueprints.users as user_module
+
 
 app = Flask(__name__)
+app.secret_key = 'S0M3S3CR3TK3Y'
+app.config.from_object('flask_auth.config.' + os.getenv('APPLICATION_ENV', 'Development'))
 
-app.config.from_object('flask_auth.config.DevelopmentConfig')
+# Extensions
+database_framework.init_app(app)
+rest_framework.init_app(app)
+migrate_framework.init_app(app)
+serializer_framework.init_app(app)
 
-api = Api(app)
-ma = Marshmallow(app)
-db = SQLAlchemy(app)
-migrate = Migrate(app, db)
+# Blueprints
+user_module.init_app(app)
 
-PREFIX = '/api'
-API_VERSION = "/" + app.config['API_VERSION']  # /v1, /v2,...
-BASE_URL = PREFIX + API_VERSION
-
-
-class HomeResource(Resource):
-    base_endpoint = '/'
-
-    def get(self):
-        return jsonify(status='Running',
-                       port=int(app.config['PORT']),
-                       version=app.config['API_VERSION'],
-                       modules=[{
-                           'users': {
-                               'href': UserResource.base_endpoint
-                           }
-                       }])
-
-
-class UserResource(Resource):
-    base_endpoint = BASE_URL + '/users'
-
-    def get(self):
-        return 'list'
-
-
-##############################
-# Shell Context
-##############################
-@app.shell_context_processor
-def make_shell_context():
-    return dict(app=app, db=db)
-
-
-##############################
-# Routes
-##############################
-
-api.add_resource(HomeResource, HomeResource.base_endpoint)
-api.add_resource(UserResource, UserResource.base_endpoint)
