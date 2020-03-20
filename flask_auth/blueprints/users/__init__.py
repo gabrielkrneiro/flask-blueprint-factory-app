@@ -1,6 +1,7 @@
 from flask import Blueprint, Flask
-from .resources import UserCreateListResource
 from flask_restful import Api
+
+from .resources import UserCreateListResource, UserDetailUpdateRemoveResource
 
 bp = Blueprint('users', __name__)
 api = Api(bp)
@@ -8,5 +9,5 @@ api = Api(bp)
 
 def init_app(app: Flask):
     api.add_resource(UserCreateListResource, "/")
+    api.add_resource(UserDetailUpdateRemoveResource, "/<int:_id>")
     app.register_blueprint(bp)
-
