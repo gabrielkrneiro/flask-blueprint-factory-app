@@ -11,24 +11,24 @@ class Config(object):
 
 
 class Production(Config):
+    ENV = 'Production'
     HOST = '0.0.0.0'
     DATABASE_URI = 'mysql://user@localhost/foo'
     PORT = '5010'
     SECRET_KEY = 'secret_key_prod'
-    ENV = __qualname__
 
 
 class Development(Config):
-    HOST = 'localhost'
+    ENV = 'Development'
+    HOST = '0.0.0.0'
     DEBUG = True
     PORT = '5000'
     SECRET_KEY = 'secret_key_dev'
-    ENV = __qualname__
 
 
 class Test(Config):
+    ENV = 'Test'
     HOST = '0.0.0.0'
     TESTING = True
     PORT = '3214'
     SECRET_KEY = 'secret_key_test'
-    ENV = __qualname__
