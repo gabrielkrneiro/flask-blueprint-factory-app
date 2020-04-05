@@ -2,6 +2,7 @@ import unittest
 import socket
 import requests
 import os
+import json
 
 from flask import Flask, url_for
 
@@ -44,9 +45,13 @@ class UserResourceTest(unittest.TestCase):
         self.assertIsNotNone(response.json["id"])
 
     def test_should_get_an_user_created_successfully(self):
-        raise Exception(
-            "You should implement test_should_get_an_user_created_successfully()"
+        response = self.client.post(
+            path=url_for("users.usercreatelistresource"),
+            data=json.dumps({"login": "gabu", "password": "senha123"}),
+            follow_redirects=True,
+            mimetype="application/json",  # ,
         )
+        self.assertEqual(200, response.status_code)
 
     def test_should_get_an_user_removed_successfully(self):
         raise Exception(
