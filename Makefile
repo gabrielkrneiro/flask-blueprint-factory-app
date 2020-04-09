@@ -1,3 +1,9 @@
+help:
+	@echo "check	-	Check required principal dependencies"
+	@echo "init		-	Initialize the project"
+	@echo "runserver	-	Run the application"
+	@echo "test		-	Run unit tests"
+
 check:
 	python --version
 	pip --version
@@ -17,5 +23,6 @@ test:
 	poetry run coverage html
 
 db-init:
-	flask db init
-	flask db migrate
+	@echo "Warning: You should remove migrations/ or data.db if these files already exists"
+	poetry run flask db init
+	poetry run flask db migrate

@@ -12,9 +12,10 @@ import flask_auth.blueprints.users as user_module
 
 def minimal_app(**config):
     app = Flask(__name__)
-    app.secret_key = 'S0M3S3CR3TK3Y'
-    app.config.from_object('flask_auth.config.' +
-                           os.getenv('APPLICATION_ENV', 'Development'))
+    app.secret_key = "S0M3S3CR3TK3Y"
+    app.config.from_object(
+        "flask_auth.config." + os.getenv("APPLICATION_ENV", "Development")
+    )
     return app
 
 
@@ -22,9 +23,9 @@ def main_app(**config):
     # Extensions
     app = minimal_app()
 
-    @app.route('/')
+    @app.route("/")
     def index_route():
-        return jsonify(message='Server is running...')
+        return jsonify(message="Server is running...")
 
     database_framework.init_app(app)
     rest_framework.init_app(app)
