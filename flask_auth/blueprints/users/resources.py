@@ -6,7 +6,12 @@ from flask_restful import Resource, abort
 
 from flask_auth.extensions.database.database_framework import db
 from .models import UserModel
-from .schemas import UserListSchema, UserCreateSchema, UserDetailsSchema, UserUpdateSchema
+from .schemas import (
+    UserListSchema,
+    UserCreateSchema,
+    UserDetailsSchema,
+    UserUpdateSchema,
+)
 
 
 class UserCreateListResource(Resource):
@@ -27,7 +32,7 @@ class UserCreateListResource(Resource):
             db.session.add(user)
             db.session.commit()
             db.session.close()
-            return jsonify(message='User created successfully')
+            return jsonify(message="User created successfully")
         except ValidationError as error:
             pprint(error.messages)
             return abort(401)
@@ -39,9 +44,11 @@ class UserDetailUpdateRemoveResource(Resource):
     user_model = UserModel()
 
     def get(self, _id: int):
-        user = self.user_details_schema.dump(self.user_model.query.filter_by(id=_id).first())
+        user = self.user_details_schema.dump(
+            self.user_model.query.filter_by(id=_id).first()
+        )
         if not user:
-            return abort(401, message='User not found')
+            return abort(401, message="User not found")
         return user
 
     # TODO: Improve this update approach
@@ -49,12 +56,12 @@ class UserDetailUpdateRemoveResource(Resource):
         try:
             db_user = self.user_model.query.filter_by(id=_id).first()
             if not db_user:
-                return abort(401, message='User not found')
+                return abort(401, message="User not found")
             new_user_values = self.user_update_schema.load(request.json)
             db_user.login = new_user_values.login
             db.session.commit()
             db.session.close()
-            return jsonify(message='User updated successfully')
+            return jsonify(message="User updated successfully")
         except ValidationError as error:
             pprint(error.messages)
             return abort(401)
@@ -66,8 +73,11 @@ class UserDetailUpdateRemoveResource(Resource):
                 db.session.delete(user)
                 db.session.commit()
                 db.session.close()
-                return jsonify(message='User removed successfully')
-            return abort(401, message='User not found')
+                return jsonify(message="User removed successfully")
+            return abort(401, message="User not found")
         except ValidationError as error:
             pprint(error.messages)
-            return abort(401, message='Some information is lacking or invalid. Please check them and try it again.')
+            return abort(
+                401,
+                message="Some information is lacking or invalid. Please check them and try it again.",
+            )

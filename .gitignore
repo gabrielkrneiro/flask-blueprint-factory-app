@@ -2,6 +2,9 @@
 migrations/
 .mypy_cache/
 data.db
+data_test.db
 __pycache__
-.env
 .idea/
+*.egg-info*/
+.env
+venv/
