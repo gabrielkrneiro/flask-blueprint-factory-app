@@ -32,3 +32,4 @@ class Test(Config):
     TESTING = True
     PORT = "3214"
     SECRET_KEY = "secret_key_test"
+    SQLALCHEMY_DATABASE_URI = f'sqlite:///{os.path.abspath(".")}/data_test.db'
