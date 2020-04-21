@@ -1,15 +1,15 @@
 import unittest
-import socket
-import requests
 import os
 import json
 
 from flask import Flask, url_for
 
-from flask_auth.blueprints.users.schemas import UserDetailsSchema, UserListSchema
 from flask_auth.blueprints.users.models import UserModel
 from flask_auth.blueprints.users.resources import UserCreateListResource
-from tests import client, db
+from tests import client
+
+from tests.users.UserModelMockFactory import UserModelMockFactory
+from tests.users.UserModelMock import UserModelMock
 
 """
 TODO: Necessary configure setUp() and tearDown() correctly due database connection.
@@ -19,10 +19,11 @@ TODO: Configure mocked data to test environment
 
 class UserResourceTest(unittest.TestCase):
     def setUp(self):
-        ...
+        self.users = UserModelMockFactory(number_of_users=2)
+        self.users.save_mocks_in_database()
 
     def tearDown(self):
-        ...
+        self.users.remove_all_registers_from_database()
 
     def test_should_return_200_if_server_is_running(self):
         response = client.get(path=url_for("index_route"))
