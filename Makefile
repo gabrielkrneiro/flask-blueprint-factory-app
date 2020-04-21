@@ -15,11 +15,9 @@ check:
 
 ######################## 	Environment configuration	####################################
 init:
+	[ ! -f ./.env ] && echo "\n# Error: Required file ".env" not exists, create it based on ".env.example" and try it again!\n" && exit 2 || echo ""
 	pip install poetry
 	poetry install
-	@echo "###################################################################"
-	@echo "#####	You should create .env file based on .env.example     #####"
-	@echo "###################################################################"
 	@make db-init
 
 db-init:
