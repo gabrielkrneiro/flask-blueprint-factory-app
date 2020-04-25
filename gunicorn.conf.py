@@ -1,3 +1,13 @@
+import os
+import flask_auth.config as config
+
+APPLICATION_ENV = os.getenv("APPLICATION_ENV", "Development")
+# current_configurations = config[APPLICATION_ENV]
+
+import ipdb
+
+ipdb.set_trace()
+
 # Sample Gunicorn configuration file.
 # Source: https://github.com/benoitc/gunicorn/blob/master/examples/example_config.py
 
@@ -18,7 +28,6 @@
 #       Must be a positive integer. Generally set in the 64-2048
 #       range.
 #
-
 bind = "0.0.0.0:5010"
 backlog = 2048
 

@@ -8,14 +8,14 @@ class Config(object):
 
 class ProductionConfig(Config):
     # dont remove ENV attribute
-    ENV = __qualname__
+    ...
 
 
 class DevelopmentConfig(Config):
     # dont remove ENV attribute
-    ENV = __qualname__
+    ...
 
 
 class TestingConfig(Config):
     # dont remove ENV attribute
-    ENV = __qualname__
+    ...

@@ -49,3 +49,6 @@ test:
 
 runserver:
 	poetry run python run.py
+
+runserver-prod:
+	gunicorn -c gunicorn.conf.py run:app

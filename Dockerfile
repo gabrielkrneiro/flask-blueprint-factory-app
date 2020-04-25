@@ -17,4 +17,4 @@ WORKDIR /app
 
 RUN ["ls", "-latr"]
 
-ENTRYPOINT ["/bin/bash"]
+ENTRYPOINT ["make", "runserver-prod"]
