@@ -1,5 +1,8 @@
 import os
 from flask_auth.app.config import Config
+import threading
+import sys
+import traceback
 
 
 def load_config_class(required_class: str) -> Config:
@@ -223,9 +226,6 @@ def when_ready(server):
 
 def worker_int(worker):
     worker.log.info("worker received INT or QUIT signal")
-
-    ## get traceback info
-    import threading, sys, traceback
 
     id2name = {th.ident: th.name for th in threading.enumerate()}
     code = []

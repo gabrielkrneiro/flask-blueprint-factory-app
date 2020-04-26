@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "flask-auth"
+name = "flask_auth"
 version = "0.1.0"
 description = ""
 authors = ["Gabriel Carneiro <gabrielcarneirocef@gmail.com>"]

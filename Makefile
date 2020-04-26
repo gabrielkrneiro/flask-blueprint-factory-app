@@ -35,13 +35,14 @@ db-init:
 	cd flask_auth; poetry run flask db upgrade
 	@make db-init-test
 
-######################## 	Test scripts	####################################
 db-init-test:
 	@echo "\n#### Preparing test database environment.... ####"
 	[ -f ./data_test.db ] && rm ./data_test.db || echo ""
 	APPLICATION_ENV=Test FLASK_APP=flask_auth.run:app poetry run flask db upgrade --directory flask_auth/migrations
 	@mv data_test.db ./flask_auth/
-	
+
+######################## 	Test scripts	####################################
+
 test:
 	@make db-init-test
 	@echo "\n#### Running flask_auth.tests.... ####"
@@ -51,9 +52,11 @@ test:
 html-report:
 	cd flask_auth; poetry run coverage html
 
+lint:
+	poetry run flake8 --config=.flake8 flask_auth
 
 
-######################## 	Environment configuration	####################################
+######################## 	Environment Servers	####################################
 
 runserver:
 	cd flask_auth; poetry run python run.py
