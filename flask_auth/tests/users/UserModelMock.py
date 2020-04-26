@@ -1,4 +1,4 @@
-from app.flask_auth.blueprints.users.models import UserModel
+from flask_auth.app.blueprints.users.models import UserModel
 from faker import Faker
 
 fake = Faker()

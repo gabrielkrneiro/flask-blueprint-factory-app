@@ -4,7 +4,7 @@ from flask import jsonify, request
 from flask_marshmallow.sqla import ValidationError
 from flask_restful import Resource, abort
 
-from app.flask_auth.extensions.database.database_framework import db
+from flask_auth.app.extensions.database.database_framework import db
 from .models import UserModel
 from .schemas import (
     UserListSchema,

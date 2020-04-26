@@ -1,6 +1,6 @@
 import os
 import unittest
-from app.tests.users.UserResourceTest import UserResourceTest
+from flask_auth.tests.users.UserResourceTest import UserResourceTest
 
 os.environ["APPLICATION_ENV"] = "Test"
 

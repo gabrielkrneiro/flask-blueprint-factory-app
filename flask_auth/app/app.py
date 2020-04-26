@@ -2,19 +2,19 @@ import os
 
 from flask import Flask, jsonify
 
-import app.flask_auth.extensions.restful.rest_framework as rest_framework
-import app.flask_auth.extensions.database.database_framework as database_framework
-import app.flask_auth.extensions.migrate.migrate_framework as migrate_framework
-import app.flask_auth.extensions.serializer.serializer_framework as serializer_framework
+import flask_auth.app.extensions.restful.rest_framework as rest_framework
+import flask_auth.app.extensions.database.database_framework as database_framework
+import flask_auth.app.extensions.migrate.migrate_framework as migrate_framework
+import flask_auth.app.extensions.serializer.serializer_framework as serializer_framework
 
-import app.flask_auth.blueprints.users as user_module
+import flask_auth.app.blueprints.users as user_module
 
 
 def minimal_app(**config):
     app = Flask(__name__)
     app.secret_key = "S0M3S3CR3TK3Y"
     app.config.from_object(
-        "app.flask_auth.config." + os.getenv("APPLICATION_ENV", "Development")
+        "flask_auth.app.config." + os.getenv("APPLICATION_ENV", "Development")
     )
     return app
 

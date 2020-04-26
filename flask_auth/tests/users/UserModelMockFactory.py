@@ -1,6 +1,6 @@
 from .UserModelMock import UserModelMock
 from typing import List
-from app.flask_auth.extensions.database.database_framework import db
+from flask_auth.app.extensions.database.database_framework import db
 
 
 class UserModelMockFactory:

@@ -3,12 +3,12 @@ import json
 
 from flask import Flask, url_for
 
-from app.flask_auth.blueprints.users.models import UserModel
-from app.flask_auth.blueprints.users.resources import UserCreateListResource
-from app.tests import client
+from flask_auth.app.blueprints.users.models import UserModel
+from flask_auth.app.blueprints.users.resources import UserCreateListResource
+from flask_auth.tests import client
 
-from app.tests.users.UserModelMockFactory import UserModelMockFactory
-from app.tests.users.UserModelMock import UserModelMock
+from flask_auth.tests.users.UserModelMockFactory import UserModelMockFactory
+from flask_auth.tests.users.UserModelMock import UserModelMock
 
 """
 TODO: Necessary configure setUp() and tearDown() correctly due database connection.

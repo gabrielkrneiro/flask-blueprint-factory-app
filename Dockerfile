@@ -4,7 +4,7 @@ LABEL author="GabrielCarneiroDeveloper"
 
 CMD ["mkdir", "/app"]
 
-COPY ./flask_auth /app/flask_auth
+COPY ./app /app/
 COPY ./run.py /app/run.py
 COPY ./gunicorn.conf.py /app/gunicorn.conf.py
 COPY ./setup.py /app/setup.py

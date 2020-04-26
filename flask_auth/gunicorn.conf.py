@@ -1,10 +1,10 @@
 import os
-from app.flask_auth.config import Config
+from flask_auth.app.config import Config
 
 
 def load_config_class(required_class: str) -> Config:
     try:
-        flask_auth = getattr(__import__("app.flask_auth"), "flask_auth")
+        flask_auth = getattr(__import__("flask_auth.app"), "app")
         config = getattr(flask_auth, "config")
         return getattr(config, required_class)
     except Exception as exception:

@@ -1,4 +1,4 @@
-from app.flask_auth.app import main_app
+from flask_auth.app.app import main_app
 
 app = main_app()
 

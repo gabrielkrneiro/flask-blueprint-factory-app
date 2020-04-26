@@ -18,45 +18,48 @@ check:
 
 ######################## 	Environment configuration	####################################
 init:
-	[ ! -f ./.env ] && echo "\n# Error: Required file ".env" not exists, create it based on ".env.example" and try it again!\n" && exit 2 || echo ""
+	[ ! -f ./flask_auth/.env ] && echo "\n# Error: Required file ".env" not exists, create it based on ".env.example" and try it again!\n" && exit 2 || echo ""
 	pip install poetry
 	poetry install
 	@make db-init
 
 db-init:
 	@echo "\n#### Removing data.db and migrations if they exists.... ####"
-	[ -f ./data.db ] && rm data.db || echo ""
-	[ -d "./migrations" ] && rm -rf ./migrations || echo ""
+	[ -f ./flask_auth/data.db ] && rm data.db || echo ""
+	[ -d "./flask_auth/migrations" ] && rm -rf ./flask_auth/migrations || echo ""
 	@echo "\n#### Initializing database.... ####"
-	poetry run flask db init
+	cd flask_auth; poetry run flask db init
 	@echo "\n#### Migrating models.... ####"
-	poetry run flask db migrate
+	cd flask_auth; poetry run flask db migrate
 	@echo "\n#### Upgrading database based on current models.... ####"
-	poetry run flask db upgrade
+	cd flask_auth; poetry run flask db upgrade
 	@make db-init-test
 
 ######################## 	Test scripts	####################################
 db-init-test:
 	@echo "\n#### Preparing test database environment.... ####"
 	[ -f ./data_test.db ] && rm ./data_test.db || echo ""
-	APPLICATION_ENV=Test FLASK_APP=app.run:app poetry run flask db upgrade --directory app/migrations
-	@mv data_test.db ./app/
+	APPLICATION_ENV=Test FLASK_APP=flask_auth.run:app poetry run flask db upgrade --directory flask_auth/migrations
+	@mv data_test.db ./flask_auth/
 	
 test:
 	@make db-init-test
-	@echo "\n#### Running app.tests.... ####"
-	cd app; poetry run coverage run --source=app.flask_auth -m unittest --verbose app.test
-	@echo "\n#### Running app.tests.... ####"
+	@echo "\n#### Running flask_auth.tests.... ####"
+	cd flask_auth; poetry run coverage run --source=flask_auth.app -m unittest --verbose flask_auth.test
+	@echo "\n#### Running flask_auth.tests.... ####"
 
 html-report:
-	cd app; poetry run coverage html
+	cd flask_auth; poetry run coverage html
 
 
 
 ######################## 	Environment configuration	####################################
 
 runserver:
-	cd app; poetry run python run.py
+	cd flask_auth; poetry run python run.py
+
+runserver-prod-dev:
+	cd flask_auth; APPLICATION_ENV=Production poetry run gunicorn -c gunicorn.conf.py run:app
 
 runserver-prod:
-	cd app; APPLICATION_ENV=Production gunicorn -c gunicorn.conf.py run:app
+	cd flask_auth; gunicorn -c gunicorn.conf.py run:app
