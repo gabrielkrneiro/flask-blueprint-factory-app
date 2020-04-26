@@ -2,7 +2,7 @@ from flask import Flask
 
 from flask_migrate import Migrate
 from flask_sqlalchemy import SQLAlchemy
-from flask_auth.extensions.database.database_framework import db
+from app.flask_auth.extensions.database.database_framework import db
 
 
 def init_app(app: Flask):

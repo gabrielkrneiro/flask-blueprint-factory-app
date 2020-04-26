@@ -1,15 +1,14 @@
 import unittest
-import os
 import json
 
 from flask import Flask, url_for
 
-from flask_auth.blueprints.users.models import UserModel
-from flask_auth.blueprints.users.resources import UserCreateListResource
-from tests import client
+from app.flask_auth.blueprints.users.models import UserModel
+from app.flask_auth.blueprints.users.resources import UserCreateListResource
+from app.tests import client
 
-from tests.users.UserModelMockFactory import UserModelMockFactory
-from tests.users.UserModelMock import UserModelMock
+from app.tests.users.UserModelMockFactory import UserModelMockFactory
+from app.tests.users.UserModelMock import UserModelMock
 
 """
 TODO: Necessary configure setUp() and tearDown() correctly due database connection.

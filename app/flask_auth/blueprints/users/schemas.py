@@ -1,5 +1,5 @@
-from flask_auth.blueprints.users.models import UserModel
-from flask_auth.extensions.serializer.serializer_framework import ma
+from app.flask_auth.blueprints.users.models import UserModel
+from app.flask_auth.extensions.serializer.serializer_framework import ma
 
 
 class UserListSchema(ma.ModelSchema):

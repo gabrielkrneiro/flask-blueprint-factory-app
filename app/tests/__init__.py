@@ -1,9 +1,9 @@
-from flask_auth.app import minimal_app, main_app
+from app.flask_auth.app import minimal_app, main_app
 import tempfile
 from flask import jsonify
 import sqlite3
 import os
-from flask_auth.extensions.database.database_framework import db
+from app.flask_auth.extensions.database.database_framework import db
 
 """
 TODO: Configure test database name with app.config 

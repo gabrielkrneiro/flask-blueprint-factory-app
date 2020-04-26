@@ -7,6 +7,9 @@ help:
 	@echo "	runserver	Run the application"
 	@echo "	test		Run unit tests"
 	@echo "	db-init		Configure database to development and test environments"
+	@echo "	html-report		Generate report as html"
+	@echo "	db-init		Configure database to development and test environments"
+	@echo "	db-init		Configure database to development and test environments"
 
 check:
 	python --version
@@ -35,20 +38,25 @@ db-init:
 ######################## 	Test scripts	####################################
 db-init-test:
 	@echo "\n#### Preparing test database environment.... ####"
-	[ -f ./data_test.db ] && rm data_test.db || echo ""
-	APPLICATION_ENV=Test poetry run flask db upgrade
+	[ -f ./data_test.db ] && rm ./data_test.db || echo ""
+	APPLICATION_ENV=Test FLASK_APP=app.run:app poetry run flask db upgrade --directory app/migrations
+	@mv data_test.db ./app/
 	
 test:
 	@make db-init-test
-	@echo "\n#### Running tests.... ####"
-	poetry run coverage run --source=flask_auth -m unittest --verbose
-	@echo "\n#### Running tests.... ####"
-	poetry run coverage html
+	@echo "\n#### Running app.tests.... ####"
+	cd app; poetry run coverage run --source=app.flask_auth -m unittest --verbose app.test
+	@echo "\n#### Running app.tests.... ####"
+
+html-report:
+	cd app; poetry run coverage html
+
+
 
 ######################## 	Environment configuration	####################################
 
 runserver:
-	poetry run python run.py
+	cd app; poetry run python run.py
 
 runserver-prod:
-	gunicorn -c gunicorn.conf.py run:app
+	cd app; APPLICATION_ENV=Production gunicorn -c gunicorn.conf.py run:app

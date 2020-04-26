@@ -1,4 +1,4 @@
-from flask_auth.extensions.database.database_framework import db
+from app.flask_auth.extensions.database.database_framework import db
 
 
 class UserModel(db.Model):

@@ -1,12 +1,22 @@
 import os
-import flask_auth.config as config
+from app.flask_auth.config import Config
 
-APPLICATION_ENV = os.getenv("APPLICATION_ENV", "Development")
-# current_configurations = config[APPLICATION_ENV]
 
-import ipdb
+def load_config_class(required_class: str) -> Config:
+    try:
+        flask_auth = getattr(__import__("app.flask_auth"), "flask_auth")
+        config = getattr(flask_auth, "config")
+        return getattr(config, required_class)
+    except Exception as exception:
+        print(exception)
+        raise Exception(
+            f"Could not load required configuration class '{required_class}'"
+        )
 
-ipdb.set_trace()
+
+APPLICATION_ENV = os.getenv("APPLICATION_ENV", "")
+current_configuration = load_config_class(APPLICATION_ENV)
+
 
 # Sample Gunicorn configuration file.
 # Source: https://github.com/benoitc/gunicorn/blob/master/examples/example_config.py
@@ -28,8 +38,9 @@ ipdb.set_trace()
 #       Must be a positive integer. Generally set in the 64-2048
 #       range.
 #
-bind = "0.0.0.0:5010"
+bind = f"0.0.0.0:{str(current_configuration.PORT)}"
 backlog = 2048
+
 
 #
 # Worker processes
