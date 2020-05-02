@@ -1,0 +1,17 @@
+version: "3.3"
+
+services:
+  flask_auth:
+    image: flask_auth_gabrielcarneirodeveloper:latest
+    ports:
+      - "8080:5010"
+    environment:
+      - APPLICATION_ENV=Production
+    deploy:
+      mode: replicated
+      replicas: 2
+    healthcheck:
+        test: ["CMD", "curl", "-f", "http://localhost:8080"]
+        interval: 10s
+        timeout: 1s
+        retries: 5

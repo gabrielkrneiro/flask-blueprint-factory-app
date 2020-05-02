@@ -1,24 +1,19 @@
 import os
-from flask_auth.app.config import Config
 import threading
 import sys
 import traceback
 
 
-def load_config_class(required_class: str) -> Config:
-    try:
-        flask_auth = getattr(__import__("flask_auth.app"), "app")
-        config = getattr(flask_auth, "config")
-        return getattr(config, required_class)
-    except Exception as exception:
-        print(exception)
-        raise Exception(
-            f"Could not load required configuration class '{required_class}'"
-        )
-
-
-APPLICATION_ENV = os.getenv("APPLICATION_ENV", "")
-current_configuration = load_config_class(APPLICATION_ENV)
+# def load_config_class(required_class: str) -> Config:
+#     try:
+#         flask_auth = getattr(__import__("flask_auth.app"), "app")
+#         config = getattr(flask_auth, "config")
+#         return getattr(config, required_class)
+#     except Exception as exception:
+#         print(exception)
+#         raise Exception(
+#             f"Could not load required configuration class '{required_class}'"
+#         )
 
 
 # Sample Gunicorn configuration file.
@@ -41,7 +36,7 @@ current_configuration = load_config_class(APPLICATION_ENV)
 #       Must be a positive integer. Generally set in the 64-2048
 #       range.
 #
-bind = f"0.0.0.0:{str(current_configuration.PORT)}"
+bind = f"0.0.0.0:{os.getenv('FLASK_PORT', '12345')}"
 backlog = 2048
 
 

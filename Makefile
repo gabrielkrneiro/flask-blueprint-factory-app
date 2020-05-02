@@ -24,19 +24,19 @@ init:
 	@make db-init
 
 db-init:
-	@echo "\n#### Removing data.db and migrations if they exists.... ####"
+	@echo "\n*** Removing data.db and migrations if they exists...."
 	[ -f ./flask_auth/data.db ] && rm data.db || echo ""
 	[ -d "./flask_auth/migrations" ] && rm -rf ./flask_auth/migrations || echo ""
-	@echo "\n#### Initializing database.... ####"
+	@echo "\n*** Initializing database...."
 	cd flask_auth; poetry run flask db init
-	@echo "\n#### Migrating models.... ####"
+	@echo "\n*** Migrating models...."
 	cd flask_auth; poetry run flask db migrate
-	@echo "\n#### Upgrading database based on current models.... ####"
+	@echo "\n*** Upgrading database based on current models...."
 	cd flask_auth; poetry run flask db upgrade
 	@make db-init-test
 
 db-init-test:
-	@echo "\n#### Preparing test database environment.... ####"
+	@echo "\n*** Preparing test database environment...."
 	[ -f ./data_test.db ] && rm ./data_test.db || echo ""
 	APPLICATION_ENV=Test FLASK_APP=flask_auth.run:app poetry run flask db upgrade --directory flask_auth/migrations
 	@mv data_test.db ./flask_auth/
@@ -45,9 +45,10 @@ db-init-test:
 
 test:
 	@make db-init-test
-	@echo "\n#### Running flask_auth.tests.... ####"
+	@echo "\n*** Running flask_auth.tests...."
 	cd flask_auth; poetry run coverage run --source=flask_auth.app -m unittest --verbose flask_auth.test
-	@echo "\n#### Running flask_auth.tests.... ####"
+	@echo "\n*** Running flask_auth.tests...."
+	@make lint
 
 html-report:
 	cd flask_auth; poetry run coverage html
@@ -62,7 +63,22 @@ runserver:
 	cd flask_auth; poetry run python run.py
 
 runserver-prod-dev:
-	cd flask_auth; APPLICATION_ENV=Production poetry run gunicorn -c gunicorn.conf.py run:app
+	APPLICATION_ENV=Production poetry run gunicorn -c flask_auth/gunicorn.conf.py flask_auth.run:app
 
 runserver-prod:
-	cd flask_auth; gunicorn -c gunicorn.conf.py run:app
+	gunicorn -c flask_auth/gunicorn.conf.py flask_auth/run:app
+
+######################## 	Deployment process	####################################
+
+build:
+	@echo "\n*** Building the project...."
+	[ -d "./dist" ] && rm -rf ./dist || echo ""
+	[ -d "./flask_auth-*" ] && rm -rf ./flask_auth-* || echo ""
+	poetry build
+	docker-compose build
+
+deploy:
+	@make build
+	cd flask_auth-0.1.0 && python setup.py install
+
+	

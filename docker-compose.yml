@@ -1,0 +1,8 @@
+version: "3.3"
+services:
+
+  flask_auth:
+    image: flask_auth_gabrielcarneirodeveloper:latest
+    build: 
+      context: ./
+      dockerfile: Dockerfile
