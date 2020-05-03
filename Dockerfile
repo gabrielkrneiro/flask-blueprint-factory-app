@@ -1,4 +1,4 @@
-FROM gabucarneiro/ubuntu_python38:1
+FROM python:3.8-slim
 
 LABEL author="Gabriel Carneiro <carneiro.development@gmail.com>"
 
@@ -6,20 +6,18 @@ ENV FLASK_APP=run.py
 ENV APPLICATION_ENV=Production
 ENV FLASK_PORT=5010
 
-RUN ["mkdir", "/app"]
+RUN apt-get update
 
-COPY ./dist /app/dist
-COPY ./Makefile /app/Makefile
+RUN python --version && pip --version
+RUN pip install poetry
+
+RUN mkdir /app
+
+COPY ./flask_auth app/flask_auth
+COPY ./requirements.txt /app/requirements.txt
 
 WORKDIR /app
 
+RUN pip install -r requirements.txt
 
-RUN tar -zxvf dist/flask_auth-0.1.0.tar.gz && \
-    mv flask_auth-0.1.0/* . && \
-    rm -rf flask_auth-0.1.0 && \
-    /root/.pyenv/shims/python /app/setup.py install
-
-EXPOSE 5010
-
-# CMD /bin/bash
-CMD ["make", "runserver-prod"]
+CMD gunicorn -c flask_auth/gunicorn.conf.py flask_auth.run:app
