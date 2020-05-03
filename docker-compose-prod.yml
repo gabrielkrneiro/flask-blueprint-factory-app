@@ -1,0 +1,12 @@
+version: "3.8"
+
+services:
+  web_service:
+    image: flask_auth_gabrielcarneirodeveloper:1
+    ports:
+      - "8080:5010"
+    environment:
+      - APPLICATION_ENV=Production
+    deploy:
+      mode: replicated
+      replicas: 2
