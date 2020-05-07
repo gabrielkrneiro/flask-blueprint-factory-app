@@ -1,7 +1,10 @@
 from flask import Blueprint, Flask
 from flask_restful import Api
 
-from .resources import UserCreateListResource, UserDetailUpdateRemoveResource
+from flask_auth.app.blueprints.users.resources import (
+    UserCreateListResource,
+    UserDetailUpdateRemoveResource,
+)
 
 bp = Blueprint("users", __name__, url_prefix="/api/users")
 api = Api(bp)
