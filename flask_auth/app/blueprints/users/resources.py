@@ -23,7 +23,7 @@ class UserCreateListResource(Resource):
     def get(self):
         user_list = self.users_schema.dump(self.user_model.query.all())
         if not user_list:
-            return abort(404)
+            return abort(401, message="There is no user registered")
         return user_list
 
     def post(self):
