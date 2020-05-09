@@ -1,16 +1,15 @@
-definitions:
-  ServerIsRunning:
-    type: object
-    properties:
-      message:
-        type: string
-      documentation:
-        type: string
+tags:
+  - Default
 
 responses:
   200:
     description: Return an object if server is running
     schema:
-      $ref: "#/definitions/ServerIsRunning"
-    examples:
-      rgb: ["red", "green", "blue"]
+      type: object
+      properties:
+        message:
+          type: string
+        documentation:
+          type: string
+        github_repository:
+          type: string

@@ -1,0 +1,23 @@
+tags:
+  - User
+
+parameters:
+  - name: UserUpdate
+    in: body
+    required: true
+    schema:
+      type: object
+      properties:
+        login:
+          type: string
+
+  - name: _id
+    in: path
+    required: true
+    schema:
+      type: integer
+      format: int64
+
+responses:
+  200:
+    description: User updated successfully
