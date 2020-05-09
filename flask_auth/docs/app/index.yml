@@ -1,0 +1,15 @@
+tags:
+  - Default
+
+responses:
+  200:
+    description: Return an object if server is running
+    schema:
+      type: object
+      properties:
+        message:
+          type: string
+        documentation:
+          type: string
+        github_repository:
+          type: string

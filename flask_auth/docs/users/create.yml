@@ -1,0 +1,24 @@
+tags:
+  - User
+
+parameters:
+  - name: UserCreate
+    in: body
+    schema:
+      type: object
+      properties:
+        login:
+          type: string
+        password:
+          type: string
+
+responses:
+  200:
+    description: Return new user data if was registered successfully
+    schema:
+      type: object
+      properties:
+        id:
+          type: string
+        password:
+          type: string
