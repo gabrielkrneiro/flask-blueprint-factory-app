@@ -37,6 +37,7 @@ def main_app(**config):
         return jsonify(
             message="Server is running...",
             documentation=f"http://localhost:{app.config.get('PORT')}/apidocs",
+            github_repository="https://github.com/GabrielCarneiroDeveloper/flask-blueprint-factory-app",
         )
 
     # Extensions (Plugins)

@@ -1,0 +1,27 @@
+tags:
+  - User
+
+parameters:
+  - name: _id
+    in: path
+    required: true
+    schema:
+      type: integer
+      format: int64
+
+responses:
+  200:
+    description: User removed successfully
+    schema:
+      type: object
+      properties:
+        message:
+          type: string
+
+  401:
+    description: User not found
+    schema:
+      type: object
+      properties:
+        message:
+          type: string
