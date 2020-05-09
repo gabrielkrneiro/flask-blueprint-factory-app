@@ -1,7 +1,7 @@
 [tool.poetry]
 name = "flask_auth"
 version = "0.1.0"
-description = ""
+description = "Open Source project used to demonstrante Factory App + Blueprints project patterns usage"
 authors = ["Gabriel Carneiro <gabrielcarneirocef@gmail.com>"]
 
 [tool.poetry.dependencies]
@@ -13,16 +13,15 @@ Flask-RESTful = "^0.3.8"
 marshmallow-sqlalchemy = "^0.22.3"
 Flask-Migrate = "^2.5.3"
 python-dotenv = "^0.12.0"
-requests = "^2.23.0"
 black = "^19.10b0"
 flake8 = "^3.7.9"
 gunicorn = "^20.0.4"
+flasgger = "^0.9.4"
 
 [tool.poetry.dev-dependencies]
 mypy = "^0.770"
 ipython = "^7.13.0"
 ipdb = "^0.13.2"
-pudb = "^2019.2"
 nose = "^1.3.7"
 coverage = "^5.0.4"
 black = {version = "^19.10b0", allow-prereleases = true}
