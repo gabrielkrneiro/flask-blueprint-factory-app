@@ -1,0 +1,38 @@
+openapi: "3.0.3"
+info:
+  title: Flask Auth
+  description: Open Source project used to demonstrante Factory App + Blueprints project patterns usage
+  version: "1.0"
+servers:
+  - url: https://0.0.0.0:5000
+
+components:
+  schemas:
+    ServerIsRunning:
+      type: object
+      properties:
+        message:
+          type: string
+        doc:
+          type: string
+paths:
+  /:
+    get:
+      responses:
+        200:
+          description: Check if server is running
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ServerIsRunning"
+
+  /api/users/:
+    get:
+      tags:
+        - User
+      responses:
+        "200":
+          description: OK
+
+tags:
+  - name: User
