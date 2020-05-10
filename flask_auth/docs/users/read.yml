@@ -1,6 +1,8 @@
 tags:
   - User
 
+summary: Details an user
+
 parameters:
   - name: _id
     in: path

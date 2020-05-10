@@ -1,6 +1,9 @@
 tags:
   - Default
 
+description: asdfasdfasdf
+summary: Check if server is running
+
 responses:
   200:
     description: Return an object if server is running

@@ -1,6 +1,8 @@
 tags:
   - User
 
+summary: Create an user
+
 parameters:
   - name: UserCreate
     in: body

@@ -1,6 +1,8 @@
 tags:
   - User
 
+summary: Remove an user
+
 parameters:
   - name: _id
     in: path
