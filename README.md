@@ -50,7 +50,7 @@ make runserver
 
 With the project running, access the documentation in http://localhost:5000/apidocs. The API documentation was created based on [Swagger](https://swagger.io/) using [Flasgger](https://github.com/flasgger/flasgger)
 
-> API IMAGE HERE
+![API Documentation](https://github.com/GabrielCarneiroDeveloper/flask-blueprint-factory-app/blob/improve-readme/static/API_documentation.png)
 
 ## Commands
 
@@ -145,7 +145,7 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 
 ## Contributing
 
-Please read [CONTRIBUTING.md]() for details on our code of conduct, and the process for submitting pull requests to us.
+Please read [CONTRIBUTING.md](https://github.com/GabrielCarneiroDeveloper/flask-blueprint-factory-app/blob/improve-readme/CONTRIBUTING.md) for details on our code of conduct, and the process for submitting pull requests to us.
 
 ## Contacts
 
