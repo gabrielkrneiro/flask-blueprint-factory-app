@@ -50,7 +50,7 @@ make runserver
 
 With the project running, access the documentation in http://localhost:5000/apidocs. The API documentation was created based on [Swagger](https://swagger.io/) using [Flasgger](https://github.com/flasgger/flasgger)
 
-![API Documentation](https://github.com/GabrielCarneiroDeveloper/flask-blueprint-factory-app/blob/improve-readme/static/API_documentation.png)
+![API Documentation](https://github.com/GabrielCarneiroDeveloper/flask-blueprint-factory-app/blob/master/static/API_documentation.png)
 
 ## Commands
 
