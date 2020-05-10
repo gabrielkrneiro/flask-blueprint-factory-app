@@ -24,6 +24,8 @@ check:
 	python --version
 	pip --version
 	poetry --version
+	docker --version
+	docker-compose --version
 
 ######################## 	Environment configuration	####################################
 init:
