@@ -141,7 +141,7 @@ To see all packages, please take a look in **pyproject.toml**
 
 ## License
 
-This project is licensed under the MIT License - see the LICENSE file for details
+This project is licensed under the MIT License - see the [LICENSE](https://github.com/GabrielCarneiroDeveloper/flask-blueprint-factory-app/blob/improve-readme/LICENSE) file for details
 
 ## Contributing
 
