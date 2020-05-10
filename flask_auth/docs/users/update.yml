@@ -1,6 +1,8 @@
 tags:
   - User
 
+summary: Update an user
+
 parameters:
   - name: UserUpdate
     in: body

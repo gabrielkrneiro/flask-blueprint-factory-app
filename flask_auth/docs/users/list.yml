@@ -1,6 +1,8 @@
 tags:
   - User
 
+summary: List all users
+
 definitions:
   User:
     type: object
