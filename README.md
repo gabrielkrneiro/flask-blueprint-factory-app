@@ -141,11 +141,11 @@ To see all packages, please take a look in **pyproject.toml**
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE](https://github.com/GabrielCarneiroDeveloper/flask-blueprint-factory-app/blob/improve-readme/LICENSE) file for details
+This project is licensed under the MIT License - see the [LICENSE](https://github.com/GabrielCarneiroDeveloper/flask-blueprint-factory-app/blob/master/LICENSE) file for details
 
 ## Contributing
 
-Please read [CONTRIBUTING.md](https://github.com/GabrielCarneiroDeveloper/flask-blueprint-factory-app/blob/improve-readme/CONTRIBUTING.md) for details on our code of conduct, and the process for submitting pull requests to us.
+Please read [CONTRIBUTING.md](https://github.com/GabrielCarneiroDeveloper/flask-blueprint-factory-app/blob/master/CONTRIBUTING.md) for details on our code of conduct, and the process for submitting pull requests to us.
 
 ## Contacts
 
